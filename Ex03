@@ -1,0 +1,71 @@
+Ex. 03
+
+-----------------------------------
+(ARRAY LIST)
+-----------------------------------
+put            O(1) --> O(n)
+get            O(1) --> O(1)
+delete         O(n) --> O(n)
+
+- An ArrayList is similar to an array, but you can add and remove items without having a fixed size. When you add an item to
+an ArrayList, you can define if you just want to append (add to the end - O(1)) or add to a specific position (worst case - O(n))
+
+- When you access an element from an ArrayList, you get the element by the position in the ArrayList (O(1))
+
+- When you delete an element from an ArrayList, you need to shift all the elements in the array to make up for the removed element (worst case - O(n))
+
+-----------------------------------
+(HASH MAP)
+-----------------------------------
+put            O(1) --> O(1)
+get            O(1) --> O(n)
+delete         O(1) --> O(n)
+
+- A HashMap is a storage of keys and values, where the keys is used for a generated hash. HashMaps can contain different data types, including Objects
+Unlike Arrays, you retrieve data from hashmaps using the hashed key. When you add a new item to the hashmap, you add it using a key and value.
+You can not position a HashMap the way you can position an element in array, so adding to the map will be O(1).
+
+- When you retrieve an element from a HashMap, you get the element by the hash/key. In the worst case you have to look through every element in
+the Map, and that's why the big O is between O(1) (getting it on the first try) and O(n) for get-methods.
+
+- When you delete an element from a hashmap, you need to find the element and delete it. Similarily to the get-method, you need to go through the map
+until you find the correct key.
+
+
+-----------------------------------
+(BINARY TREE)
+-----------------------------------
+put            O(log(n)) --> O(n)
+get            O(log(n)) --> O(n)
+delete         O(log(n)) --> O(n)
+
+- A Binary Tree is a way to find the information you need in a more efficient way. Binary trees are built in such a way where the left and right side
+tells you if it's higher or lower than the current node. If you have a balanced binary tree, the best case scenario is O(log(n)), to add new items,
+but if your tree is unbalanced (ex. all the brances are on the left side, and none on the right), it might end up being O(n).
+
+- When you retrieve an element from a binary tree, it's easy to find the exact node you'll need. Similar to put, get also has the same big O-notations, same
+with delete.
+
+
+-----------------------------------
+(STUDENT MAP)
+-----------------------------------
+My implementation is a mix between Arrays and BinaryTrees. As the Array doesn't change,
+there isn't much of an performance issue, as Access to an array is O(1) in both best, and worst case.
+
+For Binary search trees, the best case scenario is O(log(n)) for Access/Search/Insertion/Deletion if the trees are balanced, and O(n) in worst
+case.
+
+As the binary maps are divided into 10 different binary trees, which are accessed in an array, The complexity in a best-case scenario goes down a bit.
+Instead of having one massive binary tree, we can instantly narrow it down to one smaller tree. We can, however, be unlucky and all the students
+have ID's that go into one single binary tree - and we won't have the effect of splitting them up in an array.
+
+getByName:
+As the getByName-method is driven by a value instead of a key, and you need to look through all the different binary trees and branches
+until you find it, it might not be the most efficient structure for the method.
+
+
+Sources:
+https://medium.com/zero-equals-false/arraylist-vs-linkedlist-f8c5099153b5
+https://www.bigocheatsheet.com/
+https://adrianmejia.com/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial/

@@ -1,0 +1,35 @@
+
+(A)     pg4200(_\\d+)+\\.zip
+
+pg4200 <- Matches "pg4200"
+(_\\d+)+ <- Matches zero or more "_(digits)"-combinations
+\\.zip <- Matches ".zip"
+
+based on the exercise test, the correct regex would be "(pg4200).*(\.zip)", but seeing as one of the strings
+it is not supposed to match is pg4200_ab000, it looks like you're not supposed to use characters after pg4200, and
+it should be followed by a _ if there are digits following the filepath.
+As it is unclear if you can have multiple _(digit)-instances, I've presumed you can. It is also not mentioned if you should have
+exactly 5 digits (as the examples show), or if you can have a folder without digits. For this regex I've made the following
+presumptions
+
+-Every folder NEEDS pg4200 exactly once
+-pg4200 is written in lower case
+-Every folder CAN have zero or more "_(digit)" combinations
+-Each combination (if used) NEEDS one or more digits (uncapped)
+-Each combination after pg4200 can not contain letters/words
+-Every folder ends in .zip
+
+
+
+(B)     [^\\.\\?\\!]*(([Aa][Ll][Gg][Oo][Rr][Ii][Tt][Hh][Mm][Ss])|([Aa][Ll][Gg][Dd][Aa][Tt])|([Pp][Gg]4200))[^\\.\\?\\!]*[\\.\\?\\!]
+
+[^\\.\\?\\!]* <- The sentence can contain zero or more characters excluding .?!
+(([Aa][Ll][Gg][Oo][Rr][Ii][Tt][Hh][Mm][Ss]) | ([Aa][Ll][Gg][Dd][Aa][Tt]) | ([Pp][Gg]4200)) <- The sentence needs to contain one of the following, algdat, algorithms, pg4200 - case insensitive (as other characters are "free for all", there's no need to check for multiples of these.)
+[^\\.\\?\\!]* <- The sentence can contain zero or more chracters excluding .?!
+[\\.\\?\\!] <- The sentence must end with the characters .?!
+
+
+For this regex I've made the following presumptions
+
+-There is always a space following .!? if there's more than one sentence after one another.
+
